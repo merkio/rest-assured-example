@@ -1,5 +1,6 @@
 package com.company.autotests.product.clients;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 import org.apache.http.client.utils.URIBuilder;
 import java.net.URI;
@@ -40,7 +41,7 @@ public class CarTypesClient {
     public Response readAsResponse() {
         queryParams.forEach((key, value) -> this.uriBuilder.addParameter(key, value));
         try {
-            return given().get(uriBuilder.build());
+            return given().filter(new AllureRestAssured()).get(uriBuilder.build());
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
