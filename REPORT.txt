@@ -1,0 +1,26 @@
+Allure report: tests/target/site/allure-maven-plugin
+
+First and the foremost values in fields: page, totalPageCount and pageSize are not correct.
+
+/manufacturer
+
+Critical:
+1. The response does not change depending on the locale.
+Medium:
+        1. Unexpected locale or input crashes the server (status code = 500)
+        2. If you are not writing a locale, the answer will be with a complete list of manufacturers.
+
+
+/main-types
+Critical:
+        1. The response does not change depending on the locale.
+Medium:
+        1. For incorrect input returns empty list.
+
+
+/built-types
+Critical:
+        1. The response doesn't contain page, totalPageCount, pageSize.
+
+Medium:
+        2. Incorrect input returns empty response.
