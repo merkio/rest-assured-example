@@ -1,19 +1,17 @@
 package com.company.autotests.product.tests.cartypes;
 
-import java.util.Arrays;
-import java.util.Locale;
 import java.util.stream.Stream;
 
 import com.company.autotests.product.clients.CarTypesClient;
 import com.company.autotests.product.clients.Paths;
 import com.company.autotests.product.tests.Requirements;
+import com.company.autotests.product.tests.utils.CarTypesUtils;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
-import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -27,8 +25,8 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 @Story(Requirements.Story.SCHEMA)
 @Feature(Requirements.Feature.CAR_TYPES)
 @Severity(SeverityLevel.BLOCKER)
-@DisplayName("CarTypesManufactureSchemaTest")
-class CarTypesManufactureSchemaTest {
+@DisplayName("CarTypesManufacturerSchemaTest")
+class CarTypesManufacturerSchemaTest {
 
     @ParameterizedTest(name = "Locale: {0}")
     @MethodSource("manufactureLocalesProvider")
@@ -59,12 +57,7 @@ class CarTypesManufactureSchemaTest {
     }
 
     static Stream<Arguments> manufactureLocalesProvider() {
-        Locale[] locales = Locale.getAvailableLocales();
-        return Arrays.stream(locales)
-                .filter(locale -> !locale.getLanguage().isEmpty())
-                .map(Locale::getLanguage)
-                .distinct()
+        return CarTypesUtils.getLocales().stream()
                 .map(Arguments::of);
     }
-
 }

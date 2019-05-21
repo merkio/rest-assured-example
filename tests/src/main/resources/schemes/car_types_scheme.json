@@ -14,21 +14,18 @@
       "type": "object",
       "properties": {
         "patternProperties": {
-          "oneOf": [
-            {
-              "\\d+": {
-                "type": "string"
-              }
-            },
-            {
-              "\\w+": {
-                "type": "string"
-              }
-            }
-          ]
+          "\\w+": {
+            "type": "string"
+          }
         }
       }
     }
   },
+  "required": [
+    "page",
+    "pageSize",
+    "totalPageCount",
+    "wkda"
+  ],
   "additionalProperties": false
 }

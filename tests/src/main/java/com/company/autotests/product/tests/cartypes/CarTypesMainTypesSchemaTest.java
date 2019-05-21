@@ -1,6 +1,5 @@
 package com.company.autotests.product.tests.cartypes;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -66,13 +65,20 @@ class CarTypesMainTypesSchemaTest {
     }
 
     static Stream<Arguments> mainTypesQueryParamsProvider() {
-        List<Arguments> queryParams = new ArrayList<>();
-        for (String locale : locales) {
-            for (String code : CarTypesUtils.getManufacturerCodes(locale)) {
-                queryParams.add(Arguments.of(ImmutableMap.of("manufacturer", code, "locale", locale)));
-            }
-        }
-        return queryParams.stream();
+        return Stream.of(
+                Arguments.arguments(ImmutableMap.of(
+                        "locale", "en",
+                        "manufacturer", "107"
+                )),
+                Arguments.arguments(ImmutableMap.of(
+                        "locale", "fr",
+                        "manufacturer", "935"
+                )),
+                Arguments.arguments(ImmutableMap.of(
+                        "locale", "de",
+                        "manufacturer", "570"
+                ))
+        );
     }
 
     static Stream<Arguments> mainTypesNegativeQueryParamsProvider() {

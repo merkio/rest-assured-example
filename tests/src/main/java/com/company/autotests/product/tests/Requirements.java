@@ -8,5 +8,6 @@ public class Requirements {
 
     public static final class Story {
         public static final String SCHEMA = "Schema";
+        public static final String VALUES = "Values";
     }
 }

@@ -32,7 +32,14 @@ public class CarTypesUtils {
                 .collect(Collectors.toList());
     }
 
-    public static List<String> getMainTypeCodes(String locale, List<String> manufacturerCodes) {
-        return null;
+    public static List<String> getMainTypeCodes(String locale, String manufacturerCode) {
+        return CarTypesClient.getClient()
+                .path(Paths.CAR_TYPES_MAIN_TYPES)
+                .queryParam("wa_key", PROPERTIES.waKey())
+                .queryParam("locale", locale)
+                .queryParam("manufacturer", manufacturerCode)
+                .readAsResponse().jsonPath().getMap("wkda").keySet().stream().map(String::valueOf)
+                .distinct()
+                .collect(Collectors.toList());
     }
 }
